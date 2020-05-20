@@ -24,6 +24,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   font_awesome_flutter: 8.8.1
+  transparent_image: ^1.0.0
+  google_maps_flutter: ^0.5.25+3
+  location: ^3.0.0
+  flutter_svg: ^0.17.4
 
 dev_dependencies:
   flutter_test:
@@ -58,20 +62,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: CustomIcons
+     - family: Boonhome
        fonts:
-         - asset: assets/CustomIcons.ttf
+         - asset: assets/fonts/BoonHome-400.ttf
 
-     - family: Poppins-Bold
-       fonts:
-         - asset: assets/Poppins-Bold.ttf
-
-     - family: Poppins-Medium
-       fonts:
-         - asset: assets/Poppins-Medium.ttf
-     - family: Roboto-Light
-       fonts:
-         - asset: assets/Roboto-Light.ttf
      - family: Roboto
        fonts:
          - asset: assets/fonts/Roboto-Regular.ttf

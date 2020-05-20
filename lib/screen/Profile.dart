@@ -1,7 +1,9 @@
+import 'package:delivery_app/screen/Sign_In.dart';
+import 'package:delivery_app/screen/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:delivery_app/shared/colors.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Profile extends StatefulWidget {
 //  const FoodDetail({ Key key, this.food }) : super(key: key);
@@ -12,6 +14,7 @@ class Profile extends StatefulWidget {
 class _ProfilePageState extends State<Profile> {
   bool turnAppNotification = false;
   bool turnOnTracking = false;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -43,7 +46,8 @@ class _ProfilePageState extends State<Profile> {
                               color: Colors.black12)
                         ],
                         image: DecorationImage(
-                          image: AssetImage("assets/images/empty_wish_list.png"),
+                          image:
+                              AssetImage("assets/images/empty_wish_list.png"),
                           fit: BoxFit.cover,
                         )),
                   ),
@@ -56,8 +60,7 @@ class _ProfilePageState extends State<Profile> {
                       Text(
                         "Xone Sengphosy",
                         style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold),
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 10.0,
@@ -78,16 +81,21 @@ class _ProfilePageState extends State<Profile> {
                         child: Container(
                           width: 60.0,
                           height: 25.0,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6.0),
-                              border: Border.all(color: primaryColor)),
                           child: Center(
-                              child: Text(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
                                 "Edit",
                                 style: TextStyle(
                                   fontSize: 16.0,
-                                  color: primaryColor,),
-                              )),
+                                  color: primaryColor,
+                                ),
+                              ),
+                              Icon(Icons.navigate_next,
+                                  size: 18, color: primaryColor)
+                            ],
+                          )),
                         ),
                       )
                     ],
@@ -99,9 +107,7 @@ class _ProfilePageState extends State<Profile> {
               ),
               Text(
                 "Dashboard",
-                style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 10.0,
@@ -114,23 +120,34 @@ class _ProfilePageState extends State<Profile> {
                       InkWell(
                         onTap: () {},
                         child: ListTile(
-                          leading: Icon(Icons.history,color: primaryColor,),
+                          leading: Icon(
+                            Icons.history,
+                            color: primaryColor,
+                          ),
                           title: Text('My order'),
                           subtitle: Text('Recieved 300 orders'),
-                          trailing: Icon(Icons.arrow_forward_ios,size: 18,),
+                          trailing: Icon(Icons.arrow_forward_ios, size: 18),
                         ),
                       ),
                       Divider(),
                       ListTile(
-                        leading: Icon(Icons.payment,color: primaryColor,),
+                        leading: Icon(Icons.payment, color: primaryColor),
                         title: Text('Payment'),
-                        trailing: Icon(Icons.arrow_forward_ios,size: 18,),
+                        trailing: Icon(Icons.arrow_forward_ios, size: 18),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  Payment()));
+                        },
                       ),
                       Divider(),
                       ListTile(
-                        leading: Icon(Icons.timer,color: primaryColor,),
+                        leading: Icon(
+                          Icons.timer,
+                          color: primaryColor,
+                        ),
                         title: Text('On the way'),
-                        trailing: Icon(Icons.arrow_forward_ios,size: 18,),
+                        trailing: Icon(Icons.arrow_forward_ios, size: 18),
                       ),
                     ],
                   ),
@@ -141,42 +158,51 @@ class _ProfilePageState extends State<Profile> {
               ),
               Text(
                 "Account",
-                style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 10.0,
               ),
               Card(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: Icon(Icons.cake,color: primaryColor,),
-                        title: Text('Birthday 22/06/1995'),
-                        trailing: Icon(Icons.arrow_forward_ios,size: 18,),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.pregnant_woman,color: primaryColor,),
-                        title: Text('Female'),
-                        trailing: Icon(Icons.arrow_forward_ios,size: 18,),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.email,color: primaryColor,),
-                        title: Text('Email'),
-                        trailing: Icon(Icons.arrow_forward_ios,size: 18,),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.lock,color: primaryColor),
-                        title: Text('Change Password'),
-                        trailing: Icon(Icons.arrow_forward_ios,size: 18,),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                  child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(children: <Widget>[
+                        ListTile(
+                          leading: Icon(Icons.cake, color: primaryColor),
+                          title: Text('Birthday 22/06/1995'),
+                          trailing: Icon(Icons.arrow_forward_ios, size: 18),
+                        ),
+                        ListTile(
+                          leading:
+                              Icon(Icons.pregnant_woman, color: primaryColor),
+                          title: Text('Female'),
+                          trailing: Icon(
+                            Icons.arrow_forward_ios,
+                            size: 18,
+                          ),
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.email, color: primaryColor),
+                          title: Text('Email'),
+                          trailing: Icon(Icons.arrow_forward_ios, size: 18),
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.lock, color: primaryColor),
+                          title: Text('Change Password'),
+                          trailing: Icon(Icons.arrow_forward_ios, size: 18),
+                        ),
+                        ListTile(
+                          leading: FaIcon(FontAwesomeIcons.signInAlt,
+                              color: primaryColor),
+                          title: Text('Sign up'),
+                          trailing: Icon(Icons.arrow_forward_ios, size: 18),
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    SignInPage()));
+                          },
+                        ),
+                      ]))),
               SizedBox(
                 height: 30.0,
               ),
@@ -187,9 +213,7 @@ class _ProfilePageState extends State<Profile> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                height: 20.0,
-              ),
+              SizedBox(height: 20.0),
               Card(
                 elevation: 3.0,
                 child: Padding(
@@ -200,29 +224,9 @@ class _ProfilePageState extends State<Profile> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            "App Notification",
+                            "Location tracking",
                             style:
-                            TextStyle(fontSize: 16.0,),
-                          ),
-                          Switch(
-                            activeColor: primaryColor,
-                            value: turnAppNotification,
-                            onChanged: (bool value) {
-                              setState(() {
-                                turnAppNotification = true;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      Divider(height: 10.0, color: primaryColor),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            "Get News",
-                            style:
-                            TextStyle(fontSize: 16.0,),
+                                TextStyle(fontSize: 16.0, fontFamily: 'Roboto'),
                           ),
                           Switch(
                             activeColor: primaryColor,
@@ -239,15 +243,6 @@ class _ProfilePageState extends State<Profile> {
                   ),
                 ),
               ),
-              Container(
-                height: 200,
-                color: whiteColor,
-                child: Column(
-                  children: <Widget>[
-
-                  ],
-                ),
-              )
             ],
           ),
         ),

@@ -1,49 +1,141 @@
+import 'dart:ui';
+import 'package:delivery_app/screen/order_detail.dart';
+import 'package:delivery_app/shared/colors.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter/material.dart';
-import 'package:delivery_app/model/Order.dart';
+import 'package:delivery_app/model/order_model.dart';
 
-class OrderListWidget extends StatelessWidget{
-  final String name;
-  final String date;
-  final String address;
-  final int price;
-  final int amount;
-  final String image;
-  OrderListWidget({this.name, this.date, this.address, this.price,this.amount,this.image});
+class OrderListWidget extends StatelessWidget {
+  const OrderListWidget({Key key, this.newOrder}) : super(key: key);
+  final Order newOrder;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-          child: Column(
-            children: <Widget>[
-         Center(
-           child: ListTile(
-//           leading: Image.network(image),
-           leading: Container(
-             width: 80,
-             height: 80,
-             decoration: BoxDecoration(
-                 image: DecorationImage(
-                   image: NetworkImage(image),
-                   fit: BoxFit.cover,
-                 ),
-                 borderRadius: BorderRadius.circular(6.0),),
-           ),
-             title: Text(name),
-             subtitle: Text(address),
-             contentPadding: EdgeInsets.only(top: 6,left: 8,right: 8,bottom: 6),
-             trailing: Icon(Icons.arrow_forward_ios),
-//            Card(
-//              child: Column(
-//                children: <Widget>[
-//                  Text(name)
-//                ],
-//              ),
-//            )
-           ),
-         ),
+      child: _orderCard(context),
+    );
+  }
 
-            ],
+  Widget _orderCard(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        showAlertDialog(context);
+      },
+      child: Card(
+          child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            height: 80,
+            width: 120,
+            child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage, image: newOrder.image),
           ),
+          Container(
+            margin: EdgeInsets.only(left: 12),
+//            padding: EdgeInsets.only(left: 10,right: 20),
+            width: 250,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  newOrder.name,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.home, size: 16, color: primaryColor),
+                    SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        newOrder.address,
+                        style:
+                            TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 2,
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.warning, size: 16, color: primaryColor),
+                    SizedBox(width: 6),
+                    Text(
+                      newOrder.status,
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    SizedBox(width: 6),
+                    Text(newOrder.date,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ))
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      )),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget remindButton = FlatButton(
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      child: Text("ຮັບສົ່ງ"),
+      onPressed: () {},
+    );
+    Widget cancelButton = FlatButton(
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      child: Text("ຍົກເລີກ"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget viewdeatailButton = FlatButton(
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      child: Text("ລາຍລະອຽດ"),
+      onPressed: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>OrderDetail()));
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("ເລືອກການດຳເນີນການ"),
+      content: Text(
+          "Launching this missile will destroy the entire universe. Is this what you intended to do?"),
+      elevation: 9,
+      actions: [
+        Row(
+          children: <Widget>[
+            remindButton,
+            SizedBox(width: 8),
+            viewdeatailButton,
+            SizedBox(width: 8),
+            cancelButton,
+          ],
+        )
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

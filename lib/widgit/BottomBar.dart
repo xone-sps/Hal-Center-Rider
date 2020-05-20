@@ -16,14 +16,19 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   int currentTabIndex = 0;
   HomeScreen homeScreen;
   Profile profileScreen;
+
   @override
   void initState() {
     super.initState();
     homeScreen = HomeScreen();
     profileScreen = Profile();
-    pages = [homeScreen, profileScreen,];
+    pages = [
+      homeScreen,
+      profileScreen,
+    ];
     currentPage = homeScreen;
   }
+
   @override
   Widget build(BuildContext context) {
     int currentTabIndex = 0;
@@ -32,7 +37,10 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         super.initState();
         homeScreen = HomeScreen();
         profileScreen = Profile();
-        pages = [homeScreen, profileScreen,];
+        pages = [
+          homeScreen,
+          profileScreen,
+        ];
         currentPage = homeScreen;
       }
     }
@@ -61,7 +69,6 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             style: TextStyle(color: Color(0xFF545454)),
           ),
         ),
-
       ],
       currentIndex: currentTabIndex,
       selectedItemColor: primaryColor,
