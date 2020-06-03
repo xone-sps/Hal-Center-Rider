@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:delivery_app/model/order_model.dart';
 
 class OrderHistory extends StatelessWidget {
+//  final String data;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

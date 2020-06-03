@@ -1,5 +1,6 @@
 import 'package:delivery_app/screen/Sign_In.dart';
 import 'package:delivery_app/screen/payment.dart';
+import 'package:delivery_app/screen/store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:delivery_app/shared/colors.dart';
@@ -148,6 +149,18 @@ class _ProfilePageState extends State<Profile> {
                         ),
                         title: Text('On the way'),
                         trailing: Icon(Icons.arrow_forward_ios, size: 18),
+                      ),
+                      Divider(),
+                      ListTile(
+                        leading: Icon(
+                          Icons.store,
+                          color: primaryColor,
+                        ),
+                        title: Text('Store'),
+                        trailing: Icon(Icons.arrow_forward, size: 18),
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Store()));
+                        },
                       ),
                     ],
                   ),

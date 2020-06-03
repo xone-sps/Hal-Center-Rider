@@ -1,7 +1,11 @@
+import 'package:delivery_app/routes/route.dart';
 import 'package:delivery_app/screen/HomeScreen.dart';
 import 'package:delivery_app/screen/Profile.dart';
+import 'package:delivery_app/screen/order_active.dart';
 import 'package:delivery_app/screen/order_history.dart';
 import 'package:delivery_app/shared/colors.dart';
+import 'package:delivery_app/shared/colors.dart';
+import 'package:delivery_app/shared/styles.dart';
 import 'package:delivery_app/widgit/AppBar.dart';
 import 'package:delivery_app/widgit/BottomBar.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +24,14 @@ class MyApp extends StatelessWidget {
 //          primaryColorDark: Colors.white,
 //          backgroundColor: Colors.white
       ),
+
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+//      home: MyHomePage(),
+      initialRoute: '/',
+      onGenerateRoute: generateRoute,
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -38,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   HomeScreen homeScreen;
   Profile profileScreen;
   OrderHistory orderHistory;
+  OrderActive orderActive;
 
   @override
   void initState() {
@@ -45,7 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
     homeScreen = HomeScreen();
     profileScreen = Profile();
     orderHistory = OrderHistory();
-    pages = [homeScreen, orderHistory, profileScreen];
+    orderActive = OrderActive();
+    pages = [homeScreen, orderActive, orderHistory, profileScreen];
     currentPage = homeScreen;
   }
 
@@ -72,8 +80,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           title: Padding(
             padding: const EdgeInsets.only(top: 4.0),
-            child: Text('New Orders',
-                style: TextStyle(fontWeight: FontWeight.w400)),
+            child: Text('ສົ່ງສິນຄ້າ', style: bottomStylebar),
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            FontAwesomeIcons.biking,
+            size: 18,
+          ),
+          title: Padding(
+            padding: const EdgeInsets.only(top: 4.0),
+            child: Text('ກຳລັງສົ່ງ', style: bottomStylebar),
           ),
         ),
         BottomNavigationBarItem(
@@ -83,8 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           title: Padding(
             padding: const EdgeInsets.only(top: 4.0),
-            child: Text('Old Orders',
-                style: TextStyle(fontWeight: FontWeight.w400)),
+            child: Text('ປະຫວັດການສົ່ງ', style: bottomStylebar),
           ),
         ),
         BottomNavigationBarItem(
@@ -93,10 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
             size: 18,
           ),
           title: Padding(
-
             padding: const EdgeInsets.only(top: 4.0),
-            child:
-                Text('Profile', style: TextStyle(fontWeight: FontWeight.w400)),
+            child: Text('ບັນຊີ', style: bottomStylebar),
           ),
         ),
       ],

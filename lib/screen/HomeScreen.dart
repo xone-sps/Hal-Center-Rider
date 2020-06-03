@@ -1,7 +1,6 @@
 import 'package:delivery_app/shared/colors.dart';
 import 'package:delivery_app/widgit/OrderListWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:delivery_app/widgit/OrderListWidget.dart';
 import 'package:delivery_app/model/order_model.dart';
 import 'package:flutter/services.dart';
 

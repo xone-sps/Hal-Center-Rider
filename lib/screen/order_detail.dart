@@ -126,7 +126,7 @@ class OrderDetail extends StatelessWidget {
               style: TextStyle(color: whiteColor, fontSize: 16),
             ),
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.pop(context);
             },
           ),
         ),
