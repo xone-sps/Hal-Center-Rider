@@ -55,8 +55,8 @@ class OrderListWidget extends StatelessWidget {
                     Expanded(
                       child: Text(
                         newOrder.address,
-                        style:
-                            TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w600),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -91,6 +91,28 @@ class OrderListWidget extends StatelessWidget {
 
   showAlertDialog(BuildContext context) {
     // set up the buttons
+    Widget diaLogButton = ButtonBar(
+      children: <Widget>[
+        FlatButton(
+          child: Text('ຮັບສົ່ງ'),
+          onPressed: () {},
+        ),
+        FlatButton(
+          child: Text('ລາຍລະອຽດ'),
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.of(context).pushNamed('/order_detail');
+          },
+        ),
+        FlatButton(
+          child: Text('ຍົກເລີກ'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+
     Widget remindButton = FlatButton(
       padding: EdgeInsets.symmetric(horizontal: 12),
       child: Text("ຮັບສົ່ງ"),
@@ -107,7 +129,9 @@ class OrderListWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12),
       child: Text("ລາຍລະອຽດ"),
       onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>OrderDetail()));
+        Navigator.of(context).pop();
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context) => OrderDetail()));
       },
     );
 
@@ -115,18 +139,19 @@ class OrderListWidget extends StatelessWidget {
     AlertDialog alert = AlertDialog(
       title: Text("ເລືອກການດຳເນີນການ"),
       content: Text(
-          "Launching this missile will destroy the entire universe. Is this what you intended to do?"),
+          "ທ່ານຕ້ອງການຮັບສິນຄ້ານີ້ ຫຼື ບໍ່?"),
       elevation: 9,
       actions: [
-        Row(
-          children: <Widget>[
-            remindButton,
-            SizedBox(width: 8),
-            viewdeatailButton,
-            SizedBox(width: 8),
-            cancelButton,
-          ],
-        )
+        diaLogButton
+//        Row(
+//          children: <Widget>[
+//            remindButton,
+//            SizedBox(width: 8),
+//            viewdeatailButton,
+//            SizedBox(width: 8),
+//            cancelButton,
+//          ],
+//        )
       ],
     );
 

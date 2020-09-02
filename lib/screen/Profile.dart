@@ -1,5 +1,6 @@
 import 'package:delivery_app/screen/Sign_In.dart';
 import 'package:delivery_app/screen/payment.dart';
+import 'package:delivery_app/screen/product.dart';
 import 'package:delivery_app/screen/store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -47,8 +48,8 @@ class _ProfilePageState extends State<Profile> {
                               color: Colors.black12)
                         ],
                         image: DecorationImage(
-                          image:
-                              AssetImage("assets/images/empty_wish_list.png"),
+                          image: NetworkImage(
+                              'https://cdn.pixabay.com/photo/2018/01/17/07/06/laptop-3087585_960_720.jpg'),
                           fit: BoxFit.cover,
                         )),
                   ),
@@ -84,7 +85,7 @@ class _ProfilePageState extends State<Profile> {
                           height: 25.0,
                           child: Center(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
                                 "Edit",
@@ -125,9 +126,12 @@ class _ProfilePageState extends State<Profile> {
                             Icons.history,
                             color: primaryColor,
                           ),
-                          title: Text('My order'),
+                          title: Text('My product'),
                           subtitle: Text('Recieved 300 orders'),
                           trailing: Icon(Icons.arrow_forward_ios, size: 18),
+                          onTap: () {
+                            Navigator.of(context).pushNamed('/product');
+                          },
                         ),
                       ),
                       Divider(),
@@ -136,9 +140,7 @@ class _ProfilePageState extends State<Profile> {
                         title: Text('Payment'),
                         trailing: Icon(Icons.arrow_forward_ios, size: 18),
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  Payment()));
+                          Navigator.of(context).pushNamed('/payment');
                         },
                       ),
                       Divider(),
@@ -158,8 +160,8 @@ class _ProfilePageState extends State<Profile> {
                         ),
                         title: Text('Store'),
                         trailing: Icon(Icons.arrow_forward, size: 18),
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Store()));
+                        onTap: () {
+                          Navigator.of(context).pushNamed('/store');
                         },
                       ),
                     ],
@@ -210,9 +212,7 @@ class _ProfilePageState extends State<Profile> {
                           title: Text('Sign up'),
                           trailing: Icon(Icons.arrow_forward_ios, size: 18),
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    SignInPage()));
+                            Navigator.of(context).pushNamed('/sign_in');
                           },
                         ),
                       ]))),

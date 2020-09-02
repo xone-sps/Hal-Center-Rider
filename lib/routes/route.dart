@@ -1,7 +1,10 @@
 import 'package:delivery_app/screen/HomeScreen.dart';
 import 'package:delivery_app/screen/Profile.dart';
+import 'package:delivery_app/screen/Sign_In.dart';
+import 'package:delivery_app/screen/order_detail.dart';
 import 'package:delivery_app/screen/order_history.dart';
 import 'package:delivery_app/screen/payment.dart';
+import 'package:delivery_app/screen/product.dart';
 import 'package:delivery_app/screen/store.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
@@ -38,12 +41,27 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         routeName: settings.name,
         viewToShow: Profile(),
       );
+    case '/product':
+        return _getPageRoute(
+          routeName: settings.name,
+          viewToShow: Product(),
+        );
+    case '/sign_in':
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: SignInPage(),
+      );
+    case '/order_detail':
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: OrderDetail(),
+      );
     case '/order':
       if (args is String) {
         return MaterialPageRoute(
           builder: (_) => OrderHistory(),
         );
-      }
+      };
       return _errorRoute();
     default:
       _errorRoute();
